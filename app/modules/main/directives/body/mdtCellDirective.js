@@ -54,14 +54,17 @@
                     htmlContent: attr.htmlContent ? attr.htmlContent : false,
                     editableField: attr.editableField ? attr.editableField : false,
                     editableFieldTitle: attr.editableFieldTitle ? attr.editableFieldTitle : false,
-                    editableFieldMaxLength: attr.editableFieldMaxLength ? attr.editableFieldMaxLength : false
+                    editableFieldMaxLength: attr.editableFieldMaxLength ? attr.editableFieldMaxLength : false,
+                    inlineMenu: attr.inlineMenu ? attr.inlineMenu : false,
+                    ngModel: attr.ngModel ? $scope.$parent[attr.ngModel] : false
                 };
 
                 transclude(function (clone) {
                     //TODO: rework, figure out something for including html content
-                    if(attr.htmlContent){
+                    if(attr.htmlContent || attr.inlineMenu){
                         mdtRowCtrl.addToRowDataStorage(clone, attributes);
-                    }else{
+                    }
+                    else{
                         //TODO: better idea?
                         var cellValue = $parse(clone.html().replace('{{', '').replace('}}', ''))($scope.$parent);
                         mdtRowCtrl.addToRowDataStorage(cellValue, attributes);

@@ -24,6 +24,10 @@
 
             <!-- non editable field -->
             <span mdt-add-html-content-to-cell="cellData" ng-if="cellData.attributes.editableField === false"></span>
+
+            <md-select ng-if="cellData.attributes.inlineMenu" ng-model="cellData.attributes.ngModel">
+                <md-option ng-value="opt" ng-repeat="opt in cellData.attributes.inlineMenu">{{opt}}</md-option>
+            </md-select>
     </td>
 </tr>
 <tr ng-show="mdtPaginationHelper.isLoading">
